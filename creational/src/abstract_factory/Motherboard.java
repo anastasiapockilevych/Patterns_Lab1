@@ -1,4 +1,2 @@
 package abstract_factory;
-
-public class Motherboard {
-}
+public interface Motherboard { String getBoardName(); }
