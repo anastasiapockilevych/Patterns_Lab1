@@ -1,9 +1,9 @@
-
 package builder;
-import factory.StorageDrive;
-import prototype.SystemImage;
+
 import abstract_factory.PlatformFactory;
+import factory.StorageDrive;
 import factory_method.ComputerCase;
+import prototype.SystemImage;
 
 public interface ComputerBuilder {
     void reset();
@@ -12,5 +12,4 @@ public interface ComputerBuilder {
     void installCase(ComputerCase pcCase);
     void installStorage(StorageDrive storage);
     void installOs(SystemImage image);
-    Computer getResult();
 }
