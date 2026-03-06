@@ -1,4 +1,4 @@
 package factory_method;
-
-public class ComputerCase {
+public interface ComputerCase {
+    String getCaseType();
 }
