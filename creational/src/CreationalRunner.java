@@ -1,3 +1,6 @@
+package ua.edu.chnu.kkn.design_patterns.creational;
+
+// Імпортуємо всі наші "старі" пакети
 import abstract_factory.*;
 import builder.*;
 import factory.*;
@@ -7,15 +10,18 @@ import singleton.*;
 
 public class CreationalRunner {
 
-    public static void main(String[] args) { run(); }
+    public static void main(String[] args) {
+        run();
+    }
 
     public static void run() {
         System.out.println("----------Abstract factory begin---------");
-        PlatformFactory intelFactory = new IntelFactory();
+        // Використовуємо новий enum PlatformType та PlatformFactoryMaker
+        PlatformFactory intelFactory = PlatformFactoryMaker.makeFactory(PlatformType.INTEL);
         System.out.println("Intel CPU: " + intelFactory.createCpu().getCpuName());
         System.out.println("Intel Motherboard: " + intelFactory.createMotherboard().getBoardName());
 
-        PlatformFactory amdFactory = new AmdFactory();
+        PlatformFactory amdFactory = PlatformFactoryMaker.makeFactory(PlatformType.AMD);
         System.out.println("AMD CPU: " + amdFactory.createCpu().getCpuName());
         System.out.println("AMD Motherboard: " + amdFactory.createMotherboard().getBoardName());
         System.out.println("-----------Abstract factory end----------");
@@ -23,29 +29,29 @@ public class CreationalRunner {
 
         System.out.println("----------Builder begin---------");
         ComputerDirector director = new ComputerDirector();
-
-        // ВИПРАВЛЕННЯ: Використовуємо ConcretePcBuilder замість інтерфейсу
+        // Використовуємо конкретну реалізацію будівельника
         ConcretePcBuilder pcBuilder = new ConcretePcBuilder();
 
         director.constructGamingPc(pcBuilder, "SN-GAMER-123");
         Computer gamingPc = pcBuilder.getResult();
-        gamingPc.showSpecs();
+        System.out.println("Зібрано: " + gamingPc.getClass().getSimpleName() + " [Ігровий]");
 
-        // Створюємо сервер за допомогою того ж самого будівельника (після reset)
         director.constructServerPc(pcBuilder, "SN-SERVER-456");
         Computer serverPc = pcBuilder.getResult();
-        serverPc.showSpecs();
+        System.out.println("Зібрано: " + serverPc.getClass().getSimpleName() + " [Серверний]");
         System.out.println("----------Builder end----------");
         System.out.println();
 
         System.out.println("----------Factory start----------");
-        System.out.println("Storage factory begin to work.");
-        StorageDrive hdd = StorageFactory.createStorage("hdd");
-        StorageDrive ssd = StorageFactory.createStorage("ssd");
-        StorageDrive nvme = StorageFactory.createStorage("nvme");
-        System.out.println(hdd.getSpecs());
-        System.out.println(ssd.getSpecs());
-        System.out.println(nvme.getSpecs());
+        System.out.println("GPU factory begin to work.");
+        // Використовуємо нашу нову фабрику відеокарт з enum GpuType
+        Gpu officeGraphics = GpuFactory.createGpu(GpuType.INTEGRATED);
+        Gpu gamingGraphics = GpuFactory.createGpu(GpuType.GAMING);
+        Gpu renderGraphics = GpuFactory.createGpu(GpuType.WORKSTATION);
+
+        System.out.println(officeGraphics.getGraphicsSpecs());
+        System.out.println(gamingGraphics.getGraphicsSpecs());
+        System.out.println(renderGraphics.getGraphicsSpecs());
         System.out.println("----------Factory end----------");
         System.out.println();
 
@@ -65,14 +71,15 @@ public class CreationalRunner {
         System.out.println();
 
         System.out.println("----------Prototype begin----------");
-        SystemImage windowsImage = new WindowsGamingImage();
-        SystemImage clonedWindows = windowsImage.clone();
+        WindowsGamingImage originalImage = new WindowsGamingImage();
+        WindowsGamingImage clonedImage = (WindowsGamingImage) originalImage.clone();
 
-        if (windowsImage != clonedWindows) {
+        // Завдяки тому, що ми додали equals(), тепер виведеться саме те, що треба:
+        if (originalImage != clonedImage) {
             System.out.println("Objects are not the same! Yeah!");
         }
-        if (windowsImage.getClass().equals(clonedWindows.getClass())) {
-            System.out.println("Objects are identical classes! Yeah! Details: " + clonedWindows.getDetails());
+        if (originalImage.equals(clonedImage)) {
+            System.out.println("Objects are identical! Yeah!");
         }
         System.out.println("----------Prototype end----------");
         System.out.println();
@@ -84,10 +91,6 @@ public class CreationalRunner {
 
         SystemConfig configInstance2 = SystemConfig.getInstance();
         System.out.println(configInstance2.hashCode());
-
-        if (configInstance1 == configInstance2) {
-            System.out.println("Both configurations point to the same instance!");
-        }
         System.out.println("----------Singleton end----------");
         System.out.println();
     }
