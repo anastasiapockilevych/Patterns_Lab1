@@ -1,4 +1,5 @@
 package prototype;
-
-public class SystemImage {
+public interface SystemImage extends Cloneable {
+    SystemImage clone();
+    String getDetails();
 }
