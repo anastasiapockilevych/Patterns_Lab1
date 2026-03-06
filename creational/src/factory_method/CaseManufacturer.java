@@ -1,4 +1,4 @@
 package factory_method;
-
-public class CaseManufacturer {
+public abstract class CaseManufacturer {
+    public abstract ComputerCase manufactureCase();
 }
