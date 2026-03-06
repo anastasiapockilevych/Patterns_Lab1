@@ -1,4 +1,4 @@
 package factory;
-
-public class StorageDrive {
+public interface StorageDrive {
+    String getSpecs();
 }
