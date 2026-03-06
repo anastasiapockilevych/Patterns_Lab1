@@ -1,4 +1,4 @@
 package abstract_factory;
-
-public class PlatformFactory {
-}
+public interface PlatformFactory {
+    Cpu createCpu();
+    Motherboard createMotherboard();
