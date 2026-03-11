@@ -1,6 +1,3 @@
-package ua.edu.chnu.kkn.design_patterns.creational;
-
-// Імпортуємо всі наші "старі" пакети
 import abstract_factory.*;
 import builder.*;
 import factory.*;
@@ -16,7 +13,6 @@ public class CreationalRunner {
 
     public static void run() {
         System.out.println("----------Abstract factory begin---------");
-        // Використовуємо новий enum PlatformType та PlatformFactoryMaker
         PlatformFactory intelFactory = PlatformFactoryMaker.makeFactory(PlatformType.INTEL);
         System.out.println("Intel CPU: " + intelFactory.createCpu().getCpuName());
         System.out.println("Intel Motherboard: " + intelFactory.createMotherboard().getBoardName());
@@ -29,7 +25,7 @@ public class CreationalRunner {
 
         System.out.println("----------Builder begin---------");
         ComputerDirector director = new ComputerDirector();
-        // Використовуємо конкретну реалізацію будівельника
+        // Виправлений Builder:
         ConcretePcBuilder pcBuilder = new ConcretePcBuilder();
 
         director.constructGamingPc(pcBuilder, "SN-GAMER-123");
@@ -43,15 +39,13 @@ public class CreationalRunner {
         System.out.println();
 
         System.out.println("----------Factory start----------");
-        System.out.println("GPU factory begin to work.");
-        // Використовуємо нашу нову фабрику відеокарт з enum GpuType
-        Gpu officeGraphics = GpuFactory.createGpu(GpuType.INTEGRATED);
-        Gpu gamingGraphics = GpuFactory.createGpu(GpuType.GAMING);
-        Gpu renderGraphics = GpuFactory.createGpu(GpuType.WORKSTATION);
-
-        System.out.println(officeGraphics.getGraphicsSpecs());
-        System.out.println(gamingGraphics.getGraphicsSpecs());
-        System.out.println(renderGraphics.getGraphicsSpecs());
+        System.out.println("Storage factory begin to work.");
+        StorageDrive hdd = StorageFactory.createStorage("hdd");
+        StorageDrive ssd = StorageFactory.createStorage("ssd");
+        StorageDrive nvme = StorageFactory.createStorage("nvme");
+        System.out.println(hdd.getSpecs());
+        System.out.println(ssd.getSpecs());
+        System.out.println(nvme.getSpecs());
         System.out.println("----------Factory end----------");
         System.out.println();
 
@@ -74,7 +68,6 @@ public class CreationalRunner {
         WindowsGamingImage originalImage = new WindowsGamingImage();
         WindowsGamingImage clonedImage = (WindowsGamingImage) originalImage.clone();
 
-        // Завдяки тому, що ми додали equals(), тепер виведеться саме те, що треба:
         if (originalImage != clonedImage) {
             System.out.println("Objects are not the same! Yeah!");
         }

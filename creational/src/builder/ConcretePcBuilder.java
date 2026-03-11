@@ -5,6 +5,7 @@ import factory.StorageDrive;
 import factory_method.ComputerCase;
 import prototype.SystemImage;
 
+// ДОДАНО: implements ComputerBuilder
 public class ConcretePcBuilder implements ComputerBuilder {
     private Computer computer;
 
@@ -43,7 +44,6 @@ public class ConcretePcBuilder implements ComputerBuilder {
         computer.osImage = image.clone();
     }
 
-    // САМЕ ЦЬОГО МЕТОДУ НЕ ВИСТАЧАЛО:
     public Computer getResult() {
         Computer finishedPc = this.computer;
         this.reset();
