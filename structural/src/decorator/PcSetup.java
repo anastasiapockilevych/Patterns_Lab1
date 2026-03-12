@@ -1,4 +1,5 @@
 package decorator;
-
-public class PcSetup {
+public interface PcSetup {
+    String getDescription();
+    int getCost();
 }

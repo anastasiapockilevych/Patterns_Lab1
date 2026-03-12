@@ -1,4 +1,5 @@
 package composite;
-
-public class PcComponent {
+public interface PcComponent {
+    int getPrice();
+    void showDetails();
 }
