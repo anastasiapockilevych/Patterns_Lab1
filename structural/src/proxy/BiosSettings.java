@@ -1,4 +1,5 @@
 package proxy;
 
-public class BiosSettings {
+public interface BiosSettings {
+    void unlockOverclocking();
 }
