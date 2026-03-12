@@ -13,37 +13,43 @@ public class ConcretePcBuilder implements ComputerBuilder {
     }
 
     @Override
-    public void reset() {
+    public ComputerBuilder reset() {
         this.computer = new Computer();
+        return this;
     }
 
     @Override
-    public void setSerialNumber(String serial) {
+    public ComputerBuilder setSerialNumber(String serial) {
         computer.serialNumber = serial;
+        return this; // Повертаємо this для чейнінгу
     }
 
     @Override
-    public void buildPlatform(PlatformFactory factory) {
+    public ComputerBuilder buildPlatform(PlatformFactory factory) {
         computer.cpu = factory.createCpu();
         computer.motherboard = factory.createMotherboard();
+        return this;
     }
 
     @Override
-    public void installCase(ComputerCase pcCase) {
+    public ComputerBuilder installCase(ComputerCase pcCase) {
         computer.pcCase = pcCase;
+        return this;
     }
 
     @Override
-    public void installStorage(StorageDrive storage) {
+    public ComputerBuilder installStorage(StorageDrive storage) {
         computer.storage = storage;
+        return this;
     }
 
     @Override
-    public void installOs(SystemImage image) {
+    public ComputerBuilder installOs(SystemImage image) {
         computer.osImage = image.clone();
+        return this;
     }
 
-    // САМЕ ЦЬОГО МЕТОДУ НЕ ВИСТАЧАЛО:
+    @Override
     public Computer getResult() {
         Computer finishedPc = this.computer;
         this.reset();

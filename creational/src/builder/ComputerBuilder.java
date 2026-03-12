@@ -6,10 +6,11 @@ import factory_method.ComputerCase;
 import prototype.SystemImage;
 
 public interface ComputerBuilder {
-    void reset();
-    void setSerialNumber(String serial);
-    void buildPlatform(PlatformFactory factory);
-    void installCase(ComputerCase pcCase);
-    void installStorage(StorageDrive storage);
-    void installOs(SystemImage image);
+    ComputerBuilder reset();
+    ComputerBuilder setSerialNumber(String serial);
+    ComputerBuilder buildPlatform(PlatformFactory factory);
+    ComputerBuilder installCase(ComputerCase pcCase);
+    ComputerBuilder installStorage(StorageDrive storage);
+    ComputerBuilder installOs(SystemImage image);
+    Computer getResult();
 }
