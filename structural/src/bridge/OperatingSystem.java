@@ -1,4 +1,4 @@
 package bridge;
-
-public class OperatingSystem {
+public interface OperatingSystem {
+    void bootOs();
 }

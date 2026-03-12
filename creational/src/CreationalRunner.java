@@ -25,18 +25,18 @@ public class CreationalRunner {
 
         System.out.println("----------Builder begin---------");
         ComputerDirector director = new ComputerDirector();
-        // Виправлений Builder:
         ConcretePcBuilder pcBuilder = new ConcretePcBuilder();
 
         director.constructGamingPc(pcBuilder, "SN-GAMER-123");
         Computer gamingPc = pcBuilder.getResult();
-        System.out.println("Зібрано: " + gamingPc.getClass().getSimpleName() + " [Ігровий]");
+        System.out.println(gamingPc.toString()); // Виводимо повну конфігурацію!
+
+        System.out.println("\n");
 
         director.constructServerPc(pcBuilder, "SN-SERVER-456");
         Computer serverPc = pcBuilder.getResult();
-        System.out.println("Зібрано: " + serverPc.getClass().getSimpleName() + " [Серверний]");
+        System.out.println(serverPc.toString());
         System.out.println("----------Builder end----------");
-        System.out.println();
 
         System.out.println("----------Factory start----------");
         System.out.println("Storage factory begin to work.");
