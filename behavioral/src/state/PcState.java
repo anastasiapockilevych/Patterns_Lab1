@@ -1,4 +1,3 @@
 package state;
 
-public class PcState {
-}
+public interface PcState { void pressPowerButton(); }

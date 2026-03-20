@@ -1,4 +1,3 @@
 package visitor;
 
-public class PcPart {
-}
+public interface PcPart { void accept(HardwareVisitor visitor); }

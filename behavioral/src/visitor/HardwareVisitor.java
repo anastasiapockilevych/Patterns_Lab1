@@ -1,4 +1,6 @@
 package visitor;
 
-public class HardwareVisitor {
+public interface HardwareVisitor {
+    void visit(CpuPart cpu);
+    void visit(GpuPart gpu);
 }

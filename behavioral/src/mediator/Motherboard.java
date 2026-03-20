@@ -1,4 +1,5 @@
 package mediator;
 
-public class Motherboard {
+public interface Motherboard {
+    void notify(String sender, String event);
 }

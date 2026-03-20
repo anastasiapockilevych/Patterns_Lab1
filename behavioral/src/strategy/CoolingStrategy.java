@@ -1,4 +1,3 @@
 package strategy;
 
-public class CoolingStrategy {
-}
+public interface CoolingStrategy { void cool(); }
