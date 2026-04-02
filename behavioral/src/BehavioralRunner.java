@@ -65,6 +65,17 @@ public class BehavioralRunner {
         OsInstaller linuxSetup = new LinuxInstaller();
         linuxSetup.install();
 
+        System.out.println("\n----------Observer----------");
+        CpuSensor sensor = new CpuSensor();
+        Observer fan = new CoolingFan();
+        Observer display = new DisplayWidget();
+
+        sensor.addObserver(fan);
+        sensor.addObserver(display);
+
+        sensor.setTemperature(45);
+        sensor.setTemperature(85);
+
         System.out.println("----------Visitor----------");
         PcPart[] parts = {new CpuPart(), new GpuPart()};
         BenchmarkVisitor benchmark = new BenchmarkVisitor();
