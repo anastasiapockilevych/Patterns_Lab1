@@ -1,4 +1,5 @@
 package observer;
 
-public class observer {
+public interface Observer {
+    void update(int temperature);
 }

@@ -7,6 +7,7 @@ import state.*;
 import strategy.*;
 import template_method.*;
 import visitor.*;
+import observer.*;
 
 public class BehavioralRunner {
     public static void main(String[] args) {

@@ -1,4 +1,7 @@
 package observer;
 
-public class Subject {
+public interface Subject {
+    void addObserver(Observer o);
+    void removeObserver(Observer o);
+    void notifyObservers();
 }
